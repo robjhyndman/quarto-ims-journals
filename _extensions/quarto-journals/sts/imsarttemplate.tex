@@ -1,0 +1,147 @@
+\documentclass[sts]{imsart}
+
+% Pass options to hyperref
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+$endif$
+
+% Quarto submission template runs in single-column mode.
+% The journal typesets the final two-column version from the source.
+% Single-column mode is needed for longtable (used by Quarto's markdown tables).
+\makeatletter\@twocolumnfalse\makeatother
+
+% Math packages (imsart.sty does not auto-load amsmath for STS)
+\RequirePackage{amsmath,amsthm,amsfonts,amssymb}
+
+% natbib for citations (imsart.sty does not auto-load it for STS)
+\RequirePackage[numbers,sort&compress]{natbib}
+
+% Font encoding
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp}
+\fi
+
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Verbatim handling
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+% Hyperref and bookmark
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{}
+\urlstyle{same}
+
+\hypersetup{
+$if(title-meta)$
+  pdftitle={$title-meta$},
+$endif$
+$if(author-meta)$
+  pdfauthor={$author-meta$},
+$endif$
+$if(lang)$
+  pdflang={$lang$},
+$endif$
+$if(keywords)$
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+$endif$
+$if(colorlinks)$
+  colorlinks=true,
+  linkcolor={$if(linkcolor)$$linkcolor$$else$Maroon$endif$},
+  filecolor={$if(filecolor)$$filecolor$$else$Maroon$endif$},
+  citecolor={$if(citecolor)$$citecolor$$else$blue$endif$},
+  urlcolor={$if(urlcolor)$$urlcolor$$else$blue$endif$},
+$else$
+  hidelinks,
+$endif$
+  pdfcreator={LaTeX via pandoc}}
+
+% Code listings
+$if(listings)$
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+% Tables
+$if(tables)$
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+$endif$
+
+% Graphics
+$if(graphics)$
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{%
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi%
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+\def\fps@figure{htbp}
+\makeatother
+$endif$
+
+$if(strikeout)$
+\usepackage[normalem]{ulem}
+$endif$
+
+% Section numbering
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen}
+$endif$
+
+% User preamble: theorem environments and custom definitions.
+% Note: \startlocaldefs is \makeatletter and \endlocaldefs is \makeatother.
+% We process all header-includes here so they appear in the correct scope.
+\startlocaldefs
+$for(header-includes)$
+$header-includes$
+$endfor$
+\endlocaldefs
+
+\begin{document}
+
+\begin{frontmatter}
+
+$title.tex()$
+
+\begin{aug}
+$ims-aug-block$
+\end{aug}
+
+$_ims_abstract.tex()$
+
+\end{frontmatter}
+
+$body$
+
+$before-bib.tex()$
+$if(bibliography)$
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$imsart-number$endif$}
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$endif$
+
+\end{document}
