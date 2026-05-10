@@ -5,8 +5,6 @@ quarto-required: ">= 1.4.0"
 contributes:
   formats:
     pdf:
-      documentclass: imsart
-      classoption: [sts]
       cite-method: natbib
       biblio-style: imsart-number
       fig-width: 3.3
@@ -17,7 +15,6 @@ contributes:
       template: imsarttemplate.tex
       template-partials:
         - "partials/title.tex"
-        - "partials/_ims_preamble.tex"
         - "partials/_ims_abstract.tex"
       filters:
         - build-ims-authors.lua

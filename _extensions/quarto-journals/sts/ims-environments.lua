@@ -22,22 +22,6 @@
     :::
 --]]
 
-local function div_to_latex(env, before_content, after_content, content)
-  local blocks = {}
-  table.insert(blocks, pandoc.RawBlock('latex', '\\begin{' .. env .. '}'))
-  if before_content and before_content ~= '' then
-    table.insert(blocks, pandoc.RawBlock('latex', before_content))
-  end
-  for _, b in ipairs(content) do
-    table.insert(blocks, b)
-  end
-  if after_content and after_content ~= '' then
-    table.insert(blocks, pandoc.RawBlock('latex', after_content))
-  end
-  table.insert(blocks, pandoc.RawBlock('latex', '\\end{' .. env .. '}'))
-  return blocks
-end
-
 local function div_to_html_section(heading, content)
   local blocks = {}
   table.insert(blocks, pandoc.Header(2, pandoc.Str(heading)))
