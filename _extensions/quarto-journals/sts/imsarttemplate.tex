@@ -1,4 +1,4 @@
-\documentclass[sts]{imsart}
+\documentclass[$if(ims-journal)$$ims-journal$$else$sts$endif$]{imsart}
 
 % Pass options to hyperref
 \PassOptionsToPackage{unicode}{hyperref}
@@ -9,14 +9,17 @@ $endif$
 
 % Quarto submission template runs in single-column mode.
 % The journal typesets the final two-column version from the source.
-% Single-column mode is needed for longtable (used by Quarto's markdown tables).
 \makeatletter\@twocolumnfalse\makeatother
 
 % Math packages (imsart.sty does not auto-load amsmath for STS)
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb}
 
-% natbib for citations (imsart.sty does not auto-load it for STS)
+% natbib for citations (imsart.sty does not auto-load it for most journals)
+$if(nameyear-cite)$
+\RequirePackage[authoryear]{natbib}
+$else$
 \RequirePackage[numbers,sort&compress]{natbib}
+$endif$
 
 % Font encoding
 \ifPDFTeX
@@ -71,14 +74,7 @@ $endif$
 
 % Tables
 $if(tables)$
-\usepackage{longtable,booktabs,array}
-\usepackage{calc}
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
+\usepackage{booktabs,array}
 $endif$
 
 % Graphics

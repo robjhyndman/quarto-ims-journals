@@ -26,15 +26,27 @@ author:
         city: City
         country: Country
 abstract: |
-  The abstract should summarize the contents of the paper.
-  It should be clear, descriptive, self-explanatory and not longer
-  than 200 words. It should also be suitable for publication in
-  abstracting services. Formulas should be used as sparingly as
-  possible within the abstract. The abstract should not make
-  reference to results, bibliography or formulas in the body
-  of the paper---it should be self-contained.
+  The abstract should summarize the contents of the paper. It should be clear, descriptive, self-explanatory and not longer than 200 words. It should also be suitable for publication in abstracting services. Formulas should be used as sparingly as possible within the abstract. The abstract should not make reference to results, bibliography or formulas in the body of the paper---it should be self-contained.
 keywords: [first keyword, second keyword]
 bibliography: references.bib
+ims-journal: sts
+# ims-journal: code passed to \documentclass[<code>]{imsart}.
+# Numbered-citation journals (default; biblio-style: imsart-number):
+#   sts  – Statistical Science
+#   aos  – Annals of Statistics
+#   aop  – Annals of Probability
+#   aap  – Annals of Applied Probability
+#   bj   – Bernoulli
+#   aihp – Annales de l'Institut Henri Poincaré
+#   ejs  – Electronic Journal of Statistics
+#   ps   – Probability Surveys
+#   ss   – Statistics Surveys
+# Nameyear journals (set nameyear-cite: true and biblio-style: imsart-nameyear):
+#   aoas – Annals of Applied Statistics
+#   bjps – Brazilian Journal of Probability and Statistics
+#   ba   – Bayesian Analysis
+# nameyear-cite: true           # uncomment for nameyear journals (aoas, bjps, ba)
+# biblio-style: imsart-nameyear # uncomment for nameyear journals
 format:
   sts-pdf:
     keep-tex: true
@@ -52,67 +64,11 @@ header-includes: |
 
 # Introduction
 
-This template helps you to create a properly formatted manuscript for
-*Statistical Science*. Prepare your paper in the same style as used in
-this sample. Try to avoid excessive use of italics and bold face.
-
-# Section Headings
-
-Here are some sub-sections:
-
-## A Sub-section
-
-Regular text.
-
-### A sub-sub-section
-
-Regular text.
-
-# Text
-
-## Lists
-
-The following is an example of an *itemized* list, two levels deep.
-
--   This is the first item of an itemized list. Each item in the list
-    is marked with a "tick." The document style determines what kind of
-    tick mark is used.
-
--   This is the second item of the list. It contains another list nested
-    inside it.
-
-    -   This is the first item of an itemized list that is nested within
-        the itemized list.
-
-    -   This is the second item of the inner list.
-
-    This is the rest of the second item of the outer list.
-
--   This is the third item of the list.
-
-The following is an example of an *enumerated* list.
-
-1.  This is the first item of an enumerated list.
-2.  This is the second item of an enumerated list.
-
-## Punctuation
-
-Dashes come in three sizes: a hyphen, an intra-word dash like
-"$U$-statistics" or "the time-homogeneous model"; a medium dash (also
-called an "en-dash") for number ranges or between two equal entities
-like "1--2" or "Cauchy--Schwarz inequality"; and a punctuation dash
-(also called an "em-dash") in place of a comma, semicolon, colon or
-parentheses---like this.
-
-Generating an ellipsis $\ldots$ with the right spacing around the
-periods requires a special command.
+This template helps you to create a properly formatted manuscript for IMS journals. Set the `journal` field in the YAML header to the appropriate journal code (e.g., `sts` for *Statistical Science*, `aos` for *Annals of Statistics*). Prepare your paper in the same style as used in this sample. Try to avoid excessive use of italics and bold face.
 
 ## Citation
 
-Only include in the reference list entries for which there are text
-citations, and make sure all citations are included in the reference
-list. Simple cite: @r1. Multiple bibliography items cite: [@r1; @r2;
-@r3; @r4]. Citing bibliography with object: @r1, Theorem 1.
+For numbered citation journals, always use square brackets. For example, [@r1] or for multiple bibliography items [@r1; @r2; @r3; @r4]. For name-year citation journals, you can drop the square brackets for in-text citations.
 
 # Fonts
 
@@ -136,8 +92,7 @@ Please use mathematical fonts in mathematical mode, e.g.:
 -   $\mathtt{ABCabc123}$
 -   $\mathfrak{ABCabc123}$
 
-Note that `\mathcal` and `\mathbb` belong to capital letters-only font
-typefaces.
+Note that `\mathcal` and `\mathbb` belong to capital letters-only font typefaces.
 
 # Notes
 
@@ -151,10 +106,7 @@ Footnotes[^1] pose no problem.[^2]
 
 ## Examples for Plain-Style Environments
 
-Theorem environments are defined in `header-includes` and used as raw
-LaTeX blocks. This is required because the IMS class patches
-`\theoremstyle` in ways that are incompatible with Quarto's automatic
-theorem injection.
+Theorem environments are defined in `header-includes` and used as raw LaTeX blocks. This is required because the IMS class patches `\theoremstyle` in ways that are incompatible with Quarto's automatic theorem injection.
 
 ```{=latex}
 \begin{axiom}\label{ax1}
@@ -166,13 +118,11 @@ This is the body of the proof of the axiom above.
 \end{proof}
 
 \begin{claim}\label{cl1}
-This is the body of Claim \ref{cl1}. Claim \ref{cl1} is numbered after
-Axiom \ref{ax1} because we used \verb|[axiom]| in \verb|\newtheorem|.
+This is the body of Claim \ref{cl1}. Claim \ref{cl1} is numbered after Axiom \ref{ax1} because we used \verb|[axiom]| in \verb|\newtheorem|.
 \end{claim}
 
 \begin{theorem}\label{th1}
-This is the body of Theorem \ref{th1}. Theorem \ref{th1} numbering is
-dependent on section because we used \verb|[section]| after \verb|\newtheorem|.
+This is the body of Theorem \ref{th1}. Theorem \ref{th1} numbering is dependent on section because we used \verb|[section]| after \verb|\newtheorem|.
 \end{theorem}
 
 \begin{theorem}[Title of the theorem]\label{th2}
@@ -180,8 +130,7 @@ This is the body of Theorem \ref{th2}. Theorem \ref{th2} has additional title.
 \end{theorem}
 
 \begin{lemma}\label{le1}
-This is the body of Lemma \ref{le1}. Lemma \ref{le1} is numbered after
-Theorem \ref{th2} because we used \verb|[theorem]| in \verb|\newtheorem|.
+This is the body of Lemma \ref{le1}. Lemma \ref{le1} is numbered after Theorem \ref{th2} because we used \verb|[theorem]| in \verb|\newtheorem|.
 \end{lemma}
 
 \begin{proof}[Proof of Lemma \ref{le1}]
@@ -193,98 +142,86 @@ This is the body of the proof of Lemma \ref{le1}.
 
 ```{=latex}
 \begin{definition}\label{de1}
-This is the body of Definition \ref{de1}. Definition \ref{de1} is numbered after
-Lemma \ref{le1} because we used \verb|[theorem]| in \verb|\newtheorem|.
+This is the body of Definition \ref{de1}. Definition \ref{de1} is numbered after Lemma \ref{le1} because we used \verb|[theorem]| in \verb|\newtheorem|.
 \end{definition}
 
 \begin{example}
-This is the body of the example. Example is unnumbered because we used \verb|\newtheorem*|
-instead of \verb|\newtheorem|.
+This is the body of the example. Example is unnumbered because we used \verb|\newtheorem*| instead of \verb|\newtheorem|.
 \end{example}
 
 \begin{fact}
-This is the body of the fact. Fact is unnumbered because we used \verb|\newtheorem*|
-instead of \verb|\newtheorem|.
+This is the body of the fact. Fact is unnumbered because we used \verb|\newtheorem*| instead of \verb|\newtheorem|.
 \end{fact}
 ```
 
 # Tables and Figures
 
-Sample of cross-reference to figure. @fig-penG shows the estimated
-density of the standard normal distribution.
+Sample of cross-reference to figure. @fig-penG shows the estimated density of the standard normal distribution.
 
 ```{r}
 #| label: fig-penG
 #| fig-cap: "Kernel density estimate of 500 standard normal samples."
 #| echo: false
+library(ggplot2)
 set.seed(42)
-x <- rnorm(500)
-plot(density(x), main = "", xlab = "x", ylab = "Density")
-curve(dnorm(x), add = TRUE, lty = 2)
-legend("topright", legend = c("KDE", "True density"),
-       lty = c(1, 2), bty = "n")
+data.frame(x = rnorm(500)) |>
+ggplot(aes(x = x)) +
+  geom_density() +
+  stat_function(fun = dnorm, linetype = 2) +
+  labs(x = "x", y = "Density")
 ```
 
-Cross-references to labeled tables: As you can see in @tbl-sphericcase
-and also in @tbl-parset.
+Cross-references to labeled tables: see @tbl-par.
 
-| Equil. points | $x$          | $y$          | $z$         | $C$         | S |
-|:---|---:|---:|---:|---:|:---|
-| $L_1$         | $-$2.485252  | 0.000000     | 0.017101    | 8.230712    | U |
-| $L_2$         | 0.000000     | 0.000000     | 3.068884    | 0.000000    | S |
-| $L_3$         | 0.009869     | 0.000000     | 4.756387    | $-$0.000058 | U |
-| $L_4$         | 0.210590     | 0.000000     | $-$0.007021 | 9.440511    | U |
-| $L_5$         | 0.455927     | 0.000000     | $-$0.212447 | 7.586127    | U |
-
-: The spherical case ($I_1=0$, $I_2=0$) {#tbl-sphericcase}
-
-| Model   | Parameter  | Mean     | Std. dev | 2.5%     | 50%      | 97.5%   |
-|:--------|:----------:|:--------:|:--------:|:--------:|:--------:|:-------:|
-| Model 0 | $\beta_0$  | $-$12.29 | 2.29     | $-$18.04 | $-$11.99 | $-$8.56 |
-|         | $\beta_1$  | 0.10     | 0.07     | $-$0.05  | 0.10     | 0.26    |
-|         | $\beta_2$  | 0.01     | 0.09     | $-$0.22  | 0.02     | 0.16    |
-| Model 1 | $\beta_0$  | $-$4.58  | 3.04     | $-$11.00 | $-$4.44  | 1.06    |
-|         | $\beta_1$  | 0.79     | 0.21     | 0.38     | 0.78     | 1.20    |
-|         | $\beta_2$  | $-$0.28  | 0.10     | $-$0.48  | $-$0.28  | $-$0.07 |
-
-: Sample posterior estimates for each model {#tbl-parset}
+```{r}
+#| label: tbl-par
+#| tbl-cap: "Linear model coefficient estimates (mtcars)"
+#| echo: false
+fit <- lm(mpg ~ wt + hp, data = mtcars)
+coef_tbl <- broom::tidy(fit, conf.int = TRUE) |>
+  dplyr::transmute(
+    Parameter = term,
+    Mean = estimate,
+    `Std. dev` = std.error,
+    `2.5%` = conf.low,
+    `50%` = estimate,
+    `97.5%` = conf.high
+  )
+knitr::kable(coef_tbl, digits = 3)
+```
 
 # Equations and the Like
 
-Two equations: $$
-    C_{s}  =  K_{M} \frac{\mu/\mu_{x}}{1-\mu/\mu_{x}}
-$$ {#eq-cs} and $$
-    G = \frac{P_{\mathrm{opt}} - P_{\mathrm{ref}}}{P_{\mathrm{ref}}}  100(\%).
+Two equations:
+$$
+  C_{s}  =  K_{M} \frac{\mu/\mu_{x}}{1-\mu/\mu_{x}}
+$$ {#eq-cs}
+and
+$$
+  G = \frac{P_{\mathrm{opt}} - P_{\mathrm{ref}}}{P_{\mathrm{ref}}}  100(\%).
 $$
 
-Equation arrays: $$
-\begin{aligned}
+Aligned equations:
+\begin{align}
   \frac{dS}{dt} &= - \sigma X + s_{F} F,\\
   \frac{dX}{dt} &=   \mu    X,\\
   \frac{dP}{dt} &=   \pi    X - k_{h} P,\\
   \frac{dV}{dt} &=   F.
-\end{aligned}
-$$
+\end{align}
 
-One long equation: $$
-\begin{aligned}
+One long equation:
+\begin{align*}
  \mu_{\text{normal}} &= \mu_{x} \frac{C_{s}}{K_{x}C_{x}+C_{s}}  \\
                      &= \mu_{\text{normal}} - Y_{x/s}\bigl(1-H(C_{s})\bigr)(m_{s}+\pi /Y_{p/s})\\
                      &= \mu_{\text{normal}}/Y_{x/s}+ H(C_{s}) (m_{s}+ \pi /Y_{p/s}).
-\end{aligned}
-$$
+\end{align*}
 
 # Appendix {.appendix}
 
-Appendices should be provided in the Appendix section, before
-Acknowledgements. If there is only one appendix, please refer to it as
-the Appendix. If there are multiple appendices, refer to them as
-Appendix A, Appendix B, etc.
+Appendices should be provided in the Appendix section, before Acknowledgements. If there is only one appendix, please refer to it as the Appendix. If there are multiple appendices, refer to them as Appendix A, Appendix B, etc.
 
 ::: {.acks}
-The authors would like to thank the anonymous referees, an Associate
-Editor and the Editor for their constructive comments that improved the
-quality of this paper.
+The authors would like to thank the anonymous referees, an Associate Editor and the Editor for their constructive comments that improved the quality of this paper.
 :::
 
 ::: {.funding}

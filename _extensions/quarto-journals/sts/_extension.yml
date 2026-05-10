@@ -1,4 +1,4 @@
-title: Statistical Science (IMS) Format
+title: IMS Journals Format
 author: Rob J Hyndman
 version: 0.0.1
 quarto-required: ">= 1.4.0"
@@ -7,8 +7,10 @@ contributes:
     pdf:
       cite-method: natbib
       biblio-style: imsart-number
-      fig-width: 3.3
-      fig-height: 2.5
+      pdf-engine: pdflatex
+      number-sections: true
+      fig-width: 8
+      fig-height: 5
       colorlinks: true
       urlcolor: blue
       citecolor: blue
@@ -19,13 +21,9 @@ contributes:
       filters:
         - build-ims-authors.lua
         - ims-environments.lua
+        - ims-tables.lua
       format-resources:
         - imsart.cls
         - imsart.sty
         - imsart-number.bst
         - imsart-nameyear.bst
-    html:
-      number-sections: true
-      toc: true
-      filters:
-        - ims-environments.lua
