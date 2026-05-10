@@ -2,13 +2,6 @@
 template.tex
 template_files/
 
-# LaTeX resource files copied to the working directory by quarto render
-# (the canonical copies live in _extensions/quarto-journals/sts/)
-/imsart.cls
-/imsart.sty
-/imsart-number.bst
-/imsart-nameyear.bst
-
 # LaTeX intermediate files
 *.aux
 *.bbl
