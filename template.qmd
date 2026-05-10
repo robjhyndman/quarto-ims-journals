@@ -48,7 +48,7 @@ ims-journal: sts
 # nameyear-cite: true           # uncomment for nameyear journals (aoas, bjps, ba)
 # biblio-style: imsart-nameyear # uncomment for nameyear journals
 format:
-  sts-pdf:
+  ims-pdf:
     keep-tex: true
 header-includes: |
   \theoremstyle{plain}
