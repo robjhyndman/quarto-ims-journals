@@ -31,26 +31,23 @@ keywords: [first keyword, second keyword]
 bibliography: references.bib
 ims-journal: sts
 # ims-journal: code passed to \documentclass[<code>]{imsart}.
-# Numbered-citation journals (default; biblio-style: imsart-number):
-#   sts  – Statistical Science
-#   aos  – Annals of Statistics
-#   aop  – Annals of Probability
 #   aap  – Annals of Applied Probability
-#   bj   – Bernoulli
 #   aihp – Annales de l'Institut Henri Poincaré
+#   aoas – Annals of Applied Statistics
+#   aop  – Annals of Probability
+#   aos  – Annals of Statistics
+#   ba   – Bayesian Analysis
+#   bj   – Bernoulli
+#   bjps – Brazilian Journal of Probability and Statistics
 #   ejs  – Electronic Journal of Statistics
 #   ps   – Probability Surveys
 #   ss   – Statistics Surveys
-# Nameyear journals (set nameyear-cite: true and biblio-style: imsart-nameyear):
-#   aoas – Annals of Applied Statistics
-#   bjps – Brazilian Journal of Probability and Statistics
-#   ba   – Bayesian Analysis
-# nameyear-cite: true           # uncomment for nameyear journals (aoas, bjps, ba)
-# biblio-style: imsart-nameyear # uncomment for nameyear journals
+#   sts  – Statistical Science
 format:
   ims-pdf:
     keep-tex: true
 header-includes: |
+  \usepackage{longtable}
   \theoremstyle{plain}
   \newtheorem{axiom}{Axiom}
   \newtheorem{claim}[axiom]{Claim}
@@ -64,11 +61,11 @@ header-includes: |
 
 # Introduction
 
-This template helps you to create a properly formatted manuscript for IMS journals. Set the `journal` field in the YAML header to the appropriate journal code (e.g., `sts` for *Statistical Science*, `aos` for *Annals of Statistics*). Prepare your paper in the same style as used in this sample. Try to avoid excessive use of italics and bold face.
+This template helps you to create a properly formatted manuscript for IMS journals. Set the `ims-journal` field in the YAML header to the appropriate journal code (e.g., `sts` for *Statistical Science*, `aos` for *Annals of Statistics*).
 
 ## Citation
 
-For numbered citation journals, always use square brackets. For example, [@r1] or for multiple bibliography items [@r1; @r2; @r3; @r4]. For name-year citation journals, you can drop the square brackets for in-text citations.
+For numbered citation journals, always use square brackets. For example, [@r1] or for multiple bibliography items [@r1; @r2; @r3; @r4]. For name-year citation journals, you can drop the square brackets for in-text citations. Citation style is determined automatically from the `ims-journal` field in the YAML header.
 
 # Fonts
 
@@ -101,58 +98,6 @@ Footnotes[^1] pose no problem.[^2]
 [^1]: This is an example of a footnote.
 
 [^2]: Note that footnote number is after punctuation.
-
-# Environments
-
-## Examples for Plain-Style Environments
-
-Theorem environments are defined in `header-includes` and used as raw LaTeX blocks. This is required because the IMS class patches `\theoremstyle` in ways that are incompatible with Quarto's automatic theorem injection.
-
-```{=latex}
-\begin{axiom}\label{ax1}
-This is the body of Axiom \ref{ax1}.
-\end{axiom}
-
-\begin{proof}
-This is the body of the proof of the axiom above.
-\end{proof}
-
-\begin{claim}\label{cl1}
-This is the body of Claim \ref{cl1}. Claim \ref{cl1} is numbered after Axiom \ref{ax1} because we used \verb|[axiom]| in \verb|\newtheorem|.
-\end{claim}
-
-\begin{theorem}\label{th1}
-This is the body of Theorem \ref{th1}. Theorem \ref{th1} numbering is dependent on section because we used \verb|[section]| after \verb|\newtheorem|.
-\end{theorem}
-
-\begin{theorem}[Title of the theorem]\label{th2}
-This is the body of Theorem \ref{th2}. Theorem \ref{th2} has additional title.
-\end{theorem}
-
-\begin{lemma}\label{le1}
-This is the body of Lemma \ref{le1}. Lemma \ref{le1} is numbered after Theorem \ref{th2} because we used \verb|[theorem]| in \verb|\newtheorem|.
-\end{lemma}
-
-\begin{proof}[Proof of Lemma \ref{le1}]
-This is the body of the proof of Lemma \ref{le1}.
-\end{proof}
-```
-
-## Examples for Definition-Style Environments
-
-```{=latex}
-\begin{definition}\label{de1}
-This is the body of Definition \ref{de1}. Definition \ref{de1} is numbered after Lemma \ref{le1} because we used \verb|[theorem]| in \verb|\newtheorem|.
-\end{definition}
-
-\begin{example}
-This is the body of the example. Example is unnumbered because we used \verb|\newtheorem*| instead of \verb|\newtheorem|.
-\end{example}
-
-\begin{fact}
-This is the body of the fact. Fact is unnumbered because we used \verb|\newtheorem*| instead of \verb|\newtheorem|.
-\end{fact}
-```
 
 # Tables and Figures
 
@@ -215,6 +160,58 @@ One long equation:
                      &= \mu_{\text{normal}} - Y_{x/s}\bigl(1-H(C_{s})\bigr)(m_{s}+\pi /Y_{p/s})\\
                      &= \mu_{\text{normal}}/Y_{x/s}+ H(C_{s}) (m_{s}+ \pi /Y_{p/s}).
 \end{align*}
+
+# Environments
+
+## Examples for Plain-Style Environments
+
+Theorem environments are defined in `header-includes` and used as raw LaTeX blocks. This is required because the IMS class patches `\theoremstyle` in ways that are incompatible with Quarto's automatic theorem injection.
+
+```{=latex}
+\begin{axiom}\label{ax1}
+This is the body of Axiom \ref{ax1}.
+\end{axiom}
+
+\begin{proof}
+This is the body of the proof of the axiom above.
+\end{proof}
+
+\begin{claim}\label{cl1}
+This is the body of Claim \ref{cl1}. Claim \ref{cl1} is numbered after Axiom \ref{ax1} because we used \verb|[axiom]| in \verb|\newtheorem|.
+\end{claim}
+
+\begin{theorem}\label{th1}
+This is the body of Theorem \ref{th1}. Theorem \ref{th1} numbering is dependent on section because we used \verb|[section]| after \verb|\newtheorem|.
+\end{theorem}
+
+\begin{theorem}[Title of the theorem]\label{th2}
+This is the body of Theorem \ref{th2}. Theorem \ref{th2} has additional title.
+\end{theorem}
+
+\begin{lemma}\label{le1}
+This is the body of Lemma \ref{le1}. Lemma \ref{le1} is numbered after Theorem \ref{th2} because we used \verb|[theorem]| in \verb|\newtheorem|.
+\end{lemma}
+
+\begin{proof}[Proof of Lemma \ref{le1}]
+This is the body of the proof of Lemma \ref{le1}.
+\end{proof}
+```
+
+## Examples for Definition-Style Environments
+
+```{=latex}
+\begin{definition}\label{de1}
+This is the body of Definition \ref{de1}. Definition \ref{de1} is numbered after Lemma \ref{le1} because we used \verb|[theorem]| in \verb|\newtheorem|.
+\end{definition}
+
+\begin{example}
+This is the body of the example. Example is unnumbered because we used \verb|\newtheorem*| instead of \verb|\newtheorem|.
+\end{example}
+
+\begin{fact}
+This is the body of the fact. Fact is unnumbered because we used \verb|\newtheorem*| instead of \verb|\newtheorem|.
+\end{fact}
+```
 
 # Appendix {.appendix}
 

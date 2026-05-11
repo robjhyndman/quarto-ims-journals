@@ -57,34 +57,22 @@ bibliography: references.bib
 
 ### Journal codes
 
-Numbered-citation journals:
+Possible values of `ims-journal`:
 
-| Code   | Journal |
-|--------|---------|
-| `sts`  | Statistical Science |
-| `aos`  | Annals of Statistics |
-| `aop`  | Annals of Probability |
-| `aap`  | Annals of Applied Probability |
-| `bj`   | Bernoulli |
-| `aihp` | Annales de l'Institut Henri Poincaré |
-| `ejs`  | Electronic Journal of Statistics |
-| `ps`   | Probability Surveys |
-| `ss`   | Statistics Surveys |
-
-Name-year citation journals:
-
-| Code   | Journal |
-|--------|---------|
-| `aoas` | Annals of Applied Statistics |
+| Code   | Journal                                         |
+|--------|-------------------------------------------------|
+| `aap`  | Annals of Applied Probability                   |
+| `aihp` | Annales de l'Institut Henri Poincaré            |
+| `aoas` | Annals of Applied Statistics                    |
+| `aop`  | Annals of Probability                           |
+| `aos`  | Annals of Statistics                            |
+| `ba`   | Bayesian Analysis                               |
+| `bj`   | Bernoulli                                       |
 | `bjps` | Brazilian Journal of Probability and Statistics |
-| `ba`   | Bayesian Analysis |
-
-For name-year journals, add these two options:
-
-```yaml
-nameyear-cite: true
-biblio-style: imsart-nameyear
-```
+| `ejs`  | Electronic Journal of Statistics                |
+| `ps`   | Probability Surveys                             |
+| `ss`   | Statistics Surveys                              |
+| `sts`  | Statistical Science                             |
 
 ## Theorem environments
 

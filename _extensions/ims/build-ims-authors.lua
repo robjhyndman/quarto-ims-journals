@@ -11,6 +11,8 @@
   where number is the global note index used for footnote marks.
 --]]
 
+local NAMEYEAR_JOURNALS = { aoas = true, bjps = true, ba = true }
+
 local function label(n)
   return string.char(64 + n)
 end
@@ -35,6 +37,12 @@ end
 function Meta(meta)
   -- Only generate LaTeX in PDF output
   if not quarto.doc.is_format('pdf') then return meta end
+
+  local journal = stringify(meta['ims-journal'])
+  if journal and NAMEYEAR_JOURNALS[journal] then
+    meta['nameyear-cite'] = true
+    meta['biblio-style'] = 'imsart-nameyear'
+  end
 
   local authors = meta['by-author']
   if not authors or #authors == 0 then return meta end

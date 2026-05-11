@@ -1,3 +1,8 @@
+$if(nameyear-cite)$
+\PassOptionsToPackage{authoryear}{natbib}
+$else$
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+$endif$
 \documentclass[$if(ims-journal)$$ims-journal$$else$sts$endif$]{imsart}
 
 % Pass options to hyperref
@@ -14,12 +19,9 @@ $endif$
 % Math packages (imsart.sty does not auto-load amsmath for STS)
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb}
 
-% natbib for citations (imsart.sty does not auto-load it for most journals)
-$if(nameyear-cite)$
-\RequirePackage[authoryear]{natbib}
-$else$
-\RequirePackage[numbers,sort&compress]{natbib}
-$endif$
+% natbib options are set before \documentclass; load it here for journals
+% where imsart.sty does not auto-load it (e.g. sts, aop, aos, aap, aoas).
+\RequirePackage{natbib}
 
 % Font encoding
 \ifPDFTeX
