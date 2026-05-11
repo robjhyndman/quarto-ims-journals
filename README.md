@@ -120,4 +120,4 @@ This template renders in single-column mode, which is appropriate for submission
 
 ## License
 
-The LaTeX class and style files (`imsart.cls`, `imsart.sty`) and BibTeX styles are copyright VTeX Software, distributed under the LaTeX Project Public License. The Quarto extension wrapper is MIT licensed.
+The LaTeX class and style files (`imsart.cls`, `imsart.sty`) and BibTeX styles are copyright VTeX Software, distributed under the LaTeX Project Public License at <http://www.e-publications.org/ims/support>. The Quarto extension is MIT licensed.
