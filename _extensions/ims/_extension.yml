@@ -21,7 +21,6 @@ contributes:
       filters:
         - build-ims-authors.lua
         - ims-environments.lua
-        - ims-tables.lua
       format-resources:
         - imsart.cls
         - imsart.sty
